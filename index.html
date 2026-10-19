@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alizé · Restaurant, rooftop et night bar à Dakhla</title>
+<meta property="og:image" content="https://salimbennani39.github.io/alize-dakhla/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Restaurant, rooftop et night bar au cœur de Dakhla. Cuisine internationale, cocktails signatures, live music et DJ sets. Tous les soirs de 18:00 à 02:00.">
+<meta name="theme-color" content="#120A07">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@400;500;600&family=Neonderthaw&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-plate.webp">
+<link rel="preload" as="image" href="assets/hero-subject.webp">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas:     #120A07;
+    --sc-surface:    #1E120D;
+    --sc-ink:        #FBEEDD;
+    --sc-ink-soft:   #CDB8A3;
+    --sc-accent:     #6FD8A6;   /* the green of the zellige and of the carved face's eyes */
+    --sc-accent-ink: #0B1E15;
+    --sc-font-display: "Bricolage Grotesque", system-ui, sans-serif;
+    --sc-font-text:    "Geist", system-ui, sans-serif;
+    --sc-shadow-color: 15 60% 4%;
+    --neon: #FFEBCB;
+    --neon-glow: #FF9B45;
+    --rail-w: 13.5rem;
+  }
+  html { background: var(--sc-canvas); }
+  body { background: var(--sc-canvas); color: var(--sc-ink); }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3, p { margin: 0; }
+  .sc-display { font-variation-settings: "opsz" 96; }
+
+  /* ---------- grounds: every hour is its own room, hard cuts, no drift --- */
+  .g-terra { --sc-ink: #FFF1E2; --sc-ink-soft: #F3CDB4; --g: #8F3A1F; background: var(--g); color: var(--sc-ink); }
+  .g-bone  { --sc-ink: #2A140B; --sc-ink-soft: #6B4A39; --sc-accent: #1D6A4C; --sc-accent-ink: #F6EBDC; --g: #F1E3CF; background: var(--g); color: var(--sc-ink); }
+  .g-night { --sc-ink: #FBEEDD; --sc-ink-soft: #CDB8A3; --g: #0E0806; background: var(--g); color: var(--sc-ink); }
+  .g-red   { --sc-ink: #FFE9DA; --sc-ink-soft: #EBBBA8; --g: #3F0D09; background: var(--g); color: var(--sc-ink); }
+
+  /* ---------- chrome --------------------------------------------------- */
+  .mast {
+    position: fixed; top: 0; left: 0; z-index: 70;
+    display: flex; align-items: center; gap: var(--sc-3);
+    padding: var(--sc-4) var(--sc-gutter);
+    color: #FFF3E6; text-decoration: none;
+  }
+  .mast img { width: 2.75rem; height: 2.75rem; border-radius: 50%; box-shadow: var(--sc-e2); }
+  .mast span {
+    font-family: var(--sc-font-display); font-weight: 700; font-size: 1.05rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.35rem 0.7rem; border-radius: var(--sc-r-pill);
+    background: rgb(18 10 7 / 0.72);
+  }
+
+  /* The running order: the evening's timetable is the navigation. */
+  .rail {
+    position: fixed; z-index: 70; right: var(--sc-5); top: 50%; translate: 0 -50%;
+    width: var(--rail-w);
+    background: rgb(18 10 7 / 0.86);
+    color: #FBEEDD;
+    border-radius: var(--sc-r-lg);
+    padding: var(--sc-4) var(--sc-4) var(--sc-3);
+    box-shadow: var(--sc-e3), inset 0 1px 0 rgb(255 240 220 / 0.08);
+  }
+  .rail__clock {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 0 var(--sc-2) var(--sc-3);
+    border-bottom: 1px solid rgb(251 238 221 / 0.12);
+    margin-bottom: var(--sc-2);
+  }
+  .rail__now {
+    font-family: var(--sc-font-display); font-weight: 700; font-size: 2rem;
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .rail__tz { font-size: var(--sc-t-xs); color: #B9A28E; }
+  .rail ol { list-style: none; margin: 0; padding: 0; }
+  .rail ol a {
+    display: grid; grid-template-columns: 3.4rem 1fr; align-items: baseline;
+    padding: 0.42rem var(--sc-2); border-radius: var(--sc-r-sm);
+    color: #A99481; text-decoration: none; font-size: var(--sc-t-sm);
+    transition: color 160ms var(--sc-ease-out), background-color 160ms var(--sc-ease-out);
+  }
+  .rail ol a time { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .rail ol a[aria-current="true"] { color: #FBEEDD; background: rgb(251 238 221 / 0.07); }
+  .rail ol a[aria-current="true"] time { color: var(--sc-accent); }
+  @media (hover: hover) and (pointer: fine) { .rail ol a:hover { color: #FBEEDD; } }
+  .rail__book {
+    display: block; margin-top: var(--sc-3); text-align: center;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    min-height: 2.9rem; padding: 0 1.3rem; border-radius: var(--sc-r-pill);
+    background: var(--sc-accent); color: var(--sc-accent-ink);
+    font: 600 var(--sc-t-sm)/1 var(--sc-font-text); letter-spacing: 0.01em;
+    text-decoration: none; white-space: nowrap;
+    box-shadow: var(--sc-e1);
+    transition: transform 140ms var(--sc-ease-out), filter 160ms var(--sc-ease-out);
+  }
+  .btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) { .btn:hover { filter: brightness(1.08); } }
+  .rail .btn { --sc-accent: #6FD8A6; --sc-accent-ink: #0B1E15; width: 100%; }
+
+  .preview-tag {
+    position: fixed; z-index: 75; top: var(--sc-4); right: var(--sc-gutter);
+    padding: 0.4rem 0.75rem; border-radius: var(--sc-r-pill);
+    background: rgb(18 10 7 / 0.82); color: #E9D6C3;
+    font: 500 var(--sc-t-xs)/1.2 var(--sc-font-text); letter-spacing: 0.02em;
+  }
+  .dock { display: none; }
+
+  :focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 3px; border-radius: 4px; }
+  .rail :focus-visible, .dock :focus-visible, .mast:focus-visible { outline-color: #6FD8A6; }
+
+  /* ---------- 18:00 hero: five planes, headline between wall and hat ---- */
+  .hero__stage { --hp: var(--sc-p, 0); --mx: 0; --my: 0; background: #2a1209; }
+  .hero__scene { position: absolute; inset: 0; }
+  .pl {
+    position: absolute; inset: 0; width: 100%; height: 100%; max-width: none;
+    object-fit: cover; object-position: var(--focus, 50% 50%);
+    pointer-events: none; will-change: transform;
+  }
+  .pl--plate {
+    transform-origin: 50% 60%;
+    transform: translate3d(calc(var(--mx) * -6px), calc(var(--hp) * -2.5vh + var(--my) * -4px), 0)
+               scale(calc(1.04 + var(--hp) * 0.05));
+  }
+  /* raking sunlight that slides across the terrace as the sun drops */
+  .pl--sun {
+    background:
+      radial-gradient(60% 55% at calc(30% - var(--hp) * 8%) calc(18% + var(--hp) * 22%), rgb(255 196 120 / 0.42), transparent 70%),
+      repeating-linear-gradient(118deg, transparent 0 7%, rgb(255 214 150 / 0.10) 7% 10%, transparent 10% 15%);
+    background-size: 100% 100%, 140% 140%;
+    background-position: 0 0, calc(var(--hp) * -26vw) 0;
+    mix-blend-mode: soft-light;
+    opacity: calc(1 - var(--hp) * 0.55);
+  }
+  .hero__scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, rgb(40 14 6 / 0.74) 0%, rgb(40 14 6 / 0.5) 34%, rgb(40 14 6 / 0) 58%);
+  }
+  .hero__h1 {
+    position: absolute; left: var(--sc-gutter); top: 27%;
+    max-width: 11ch;
+    font-family: var(--sc-font-display); font-weight: 750;
+    font-size: clamp(3.4rem, 1.4rem + 6.8vw, 8.4rem);
+    line-height: 0.92; letter-spacing: -0.04em;
+    color: #FFF3E6;
+    text-shadow: 0 2px 24px rgb(40 12 4 / 0.35);
+    transform: translate3d(calc(var(--mx) * -10px), calc(var(--hp) * -9vh), 0);
+    opacity: calc(1 - max(0, var(--hp) - 0.55) * 3);
+    text-wrap: balance;
+  }
+  .pl--subject {
+    transform-origin: 72% 100%;
+    transform: translate3d(calc(var(--mx) * -16px), calc(var(--my) * -6px), 0)
+               scale(calc(1 + var(--hp) * 0.2));
+  }
+  .pl--frond {
+    width: 62%; height: auto; inset: auto auto -6% -8%; object-fit: contain;
+    filter: blur(5px) saturate(1.1);
+    transform-origin: 0 100%;
+    transform: translate3d(calc(var(--mx) * -34px - var(--hp) * 9vw), calc(var(--hp) * 26vh + var(--my) * -12px), 0)
+               scale(calc(1 + var(--hp) * 0.22));
+  }
+  /* the hour turns: the golden grade sinks toward dusk across the pin */
+  .pl--dusk {
+    background: linear-gradient(180deg, #3b1d4a 0%, #6b2a2a 55%, #2a0f0a 100%);
+    mix-blend-mode: multiply;
+    opacity: calc(var(--hp) * 0.62);
+  }
+  .hero__copy {
+    position: absolute; left: var(--sc-gutter); bottom: clamp(2.5rem, 9vh, 6.5rem);
+    max-width: 30rem; z-index: 5;
+    transform: translate3d(0, calc(var(--hp) * -6vh), 0);
+    opacity: calc(1 - max(0, var(--hp) - 0.5) * 3);
+  }
+  .hero__copy p { color: #F6DCC6; font-size: var(--sc-t-lg); line-height: 1.45; max-width: 28ch; }
+  .hero__copy p strong { color: #FFF3E6; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .hero__copy .btn { margin-top: var(--sc-5); }
+  .hero__second {
+    position: absolute; right: calc(var(--rail-w) + var(--sc-7)); left: auto; bottom: 16%;
+    z-index: 5; max-width: 15ch; text-align: right;
+    font-family: var(--sc-font-display); font-weight: 600;
+    font-size: var(--sc-t-2xl); line-height: 1.02; letter-spacing: -0.025em; color: #FFF3E6;
+    text-shadow: 0 2px 18px rgb(30 8 4 / 0.55);
+    opacity: clamp(0, calc((var(--hp) - 0.58) * 4), 1);
+    transform: translate3d(0, calc((1 - var(--hp)) * 4vh), 0);
+  }
+
+  /* ---------- 19:00 la maison ------------------------------------------ */
+  .house { padding-block: var(--sc-9) var(--sc-10); overflow: clip; }
+  .house__grid {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--sc-5) var(--sc-5);
+    padding-right: calc(var(--rail-w) + var(--sc-6));
+  }
+  .house__face { grid-column: 1 / span 6; grid-row: 1 / span 3; align-self: start; }
+  .house__text { grid-column: 8 / span 5; grid-row: 1; align-self: end; padding-top: var(--sc-9); }
+  .house__text h2 { font-size: var(--sc-t-3xl); }
+  .house__text p { margin-top: var(--sc-5); }
+  .house__mural { grid-column: 8 / span 4; grid-row: 2; }
+  .house__pillow { grid-column: 2 / span 4; grid-row: 4; margin-top: calc(var(--sc-9) * -1); }
+  .house__lamp { grid-column: 7 / span 3; grid-row: 3 / span 2; align-self: center; }
+  .house__front { grid-column: 10 / span 3; grid-row: 4; align-self: end; }
+  .ph { margin: 0; }
+  .ph img { width: 100%; height: auto; border-radius: var(--sc-r-md); box-shadow: var(--sc-e2); }
+  .ph--tall img { aspect-ratio: 4 / 5; height: auto; object-fit: cover; }
+  .ph figcaption { margin-top: var(--sc-3); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: 0.02em; }
+
+  /* ---------- 20:30 à table: the rail ---------------------------------- */
+  .table__stage { display: flex; align-items: center; }
+  .table__rail { gap: var(--sc-6); padding-inline: var(--sc-gutter) calc(var(--rail-w) + var(--sc-8)); align-items: flex-end; }
+  .table__lead { flex: 0 0 min(30rem, 80vw); align-self: center; }
+  .table__lead h2 { font-size: var(--sc-t-4xl); }
+  .table__lead p { margin-top: var(--sc-5); }
+  .dish { flex: 0 0 auto; width: clamp(16rem, 27vw, 25rem); margin: 0; }
+  .dish:nth-of-type(even) { margin-bottom: var(--sc-9); }
+  .dish img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--sc-r-md); box-shadow: var(--sc-e3); }
+  .dish h3 { margin-top: var(--sc-4); font: 700 var(--sc-t-lg)/1.1 var(--sc-font-display); letter-spacing: -0.01em; }
+  .dish p { margin-top: var(--sc-2); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); max-width: 30ch; }
+  .table__note { flex: 0 0 min(20rem, 70vw); align-self: center; }
+  .table__note p { font-size: var(--sc-t-lg); line-height: 1.4; }
+  .table__note a { color: var(--sc-accent); text-underline-offset: 0.2em; font-weight: 600; }
+  @media (prefers-reduced-motion: no-preference) {
+    .dish { opacity: clamp(0.55, calc(var(--sc-p, 0) * 6 - var(--i) * 0.9 + 1), 1); }
+  }
+
+  /* ---------- 21:30 → 22:00 the sign ----------------------------------- */
+  .sign__stage { --sp: var(--sc-p, 0); display: grid; place-items: center; }
+  .sign__room {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none;
+    opacity: 0; transition: opacity 900ms var(--sc-ease-out);
+    -webkit-mask-image: radial-gradient(70% 70% at 50% 45%, #000 20%, transparent 85%);
+            mask-image: radial-gradient(70% 70% at 50% 45%, #000 20%, transparent 85%);
+    filter: saturate(1.05) brightness(0.62);
+  }
+  .sign__wash {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(42% 46% at 50% 44%, rgb(255 155 69 / 0.22), transparent 72%);
+    opacity: 0; transition: opacity 600ms var(--sc-ease-out);
+  }
+  .sign__stage[data-lit="6"] .sign__room { opacity: 0.5; }
+  .sign__stage[data-lit] .sign__wash { opacity: calc(var(--lit, 0) / 6); }
+  .sign__hush {
+    position: absolute; left: var(--sc-gutter); top: 42%;
+    font-family: var(--sc-font-display); font-weight: 400; font-size: var(--sc-t-xl);
+    color: #A8917E; letter-spacing: -0.01em;
+  }
+  .neon { position: relative; width: min(78vmin, 46rem); z-index: 2; overflow: visible; }
+  .neon text { font-family: "Neonderthaw", cursive; }
+  .neon .caps { font-family: var(--sc-font-display); font-weight: 400; letter-spacing: 0.32em; }
+  .tube { fill: none; stroke: #4a3328; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.55; }
+  text.tube { fill: #4a3328; stroke: none; }
+  .tube.is-on {
+    stroke: var(--neon); opacity: 1;
+    filter: drop-shadow(0 0 2px var(--neon)) drop-shadow(0 0 9px var(--neon-glow)) drop-shadow(0 0 26px rgb(255 120 40 / 0.75));
+  }
+  text.tube.is-on { fill: var(--neon); }
+  .tube.is-red.is-on { stroke: #FF5A3A; fill: #FF5A3A; filter: drop-shadow(0 0 3px #FF5A3A) drop-shadow(0 0 14px #E8321A); }
+  .neon .ring { fill: none; stroke: rgb(255 235 203 / 0.08); stroke-width: 1.5; }
+  .sign__copy {
+    position: absolute; left: var(--sc-gutter); bottom: clamp(2.5rem, 10vh, 7rem); z-index: 3; max-width: 26rem;
+  }
+  .sign__copy h2 { font-size: var(--sc-t-3xl); }
+  .sign__copy p { margin-top: var(--sc-4); }
+  .sign__copy p.sc-body { color: #E2CDB9; }
+
+  /* ---------- 23:30 live ----------------------------------------------- */
+  .live { padding-block: var(--sc-9) var(--sc-10); }
+  .live__head { padding-right: calc(var(--rail-w) + var(--sc-6)); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sc-6); }
+  .live__head h2 { font-size: clamp(3.4rem, 1.2rem + 7.6vw, 9rem); line-height: 0.9; letter-spacing: -0.045em; max-width: 9ch; }
+  .live__head .sc-body { max-width: 26rem; }
+  .live__head .sc-body a { color: var(--sc-ink); font-weight: 600; text-underline-offset: 0.2em; }
+  .cuts {
+    margin-top: var(--sc-8);
+    display: grid; gap: var(--sc-3);
+    grid-template-columns: 1.25fr 1fr 0.9fr;
+    grid-template-rows: auto auto;
+    padding-right: calc(var(--rail-w) + var(--sc-6));
+  }
+  .cuts figure { margin: 0; overflow: hidden; border-radius: var(--sc-r-sm); }
+  .cuts img { width: 100%; height: 100%; object-fit: cover; }
+  .cut--a { grid-column: 1; grid-row: 1 / span 2; }
+  .cut--a img { aspect-ratio: 4 / 5; }
+  .cut--b img, .cut--c img { aspect-ratio: 4 / 3; }
+  .cut--d { grid-column: 2 / span 2; }
+  .cut--d img { aspect-ratio: 21 / 9; }
+
+  /* ---------- 02:00 close ---------------------------------------------- */
+  .close { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-block: var(--sc-10) var(--sc-6); position: relative; overflow: clip; }
+  .close__glow {
+    position: absolute; right: 18%; top: 8%; width: min(30rem, 60vw); opacity: 0.9;
+  }
+  .close__inner { padding-right: calc(var(--rail-w) + var(--sc-6)); display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--sc-8); align-items: end; position: relative; }
+  .close h2 { font-size: var(--sc-t-4xl); max-width: 9ch; }
+  .close__status { display: inline-flex; align-items: center; gap: 0.55rem; margin-bottom: var(--sc-5); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .close__status i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #8a7666; }
+  .close__status[data-open="1"] i { background: var(--sc-accent); box-shadow: 0 0 0 4px rgb(111 216 166 / 0.18); }
+  .facts { display: grid; gap: var(--sc-5); margin: 0; }
+  .facts div { border-top: 1px solid var(--sc-hairline); padding-top: var(--sc-3); }
+  .facts dt { font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+  .facts dd { margin: var(--sc-1) 0 0; font-size: var(--sc-t-lg); line-height: 1.35; }
+  .facts a { color: var(--sc-ink); text-underline-offset: 0.2em; }
+  .close .btn { margin-top: var(--sc-6); }
+  .foot { margin-top: var(--sc-9); padding-right: calc(var(--rail-w) + var(--sc-6)); display: flex; justify-content: space-between; gap: var(--sc-4); flex-wrap: wrap; font-size: var(--sc-t-xs); color: #8F7B6B; }
+
+  /* ---------- tablet & phone ------------------------------------------- */
+  @media (max-width: 1100px) {
+    :root { --rail-w: 0rem; }
+    .rail { display: none; }
+    .dock {
+      display: flex; position: fixed; z-index: 70; left: var(--sc-3); right: var(--sc-3);
+      bottom: calc(var(--sc-3) + env(safe-area-inset-bottom));
+      align-items: center; justify-content: space-between; gap: var(--sc-3);
+      padding: 0.45rem 0.45rem 0.45rem 1rem;
+      background: rgb(18 10 7 / 0.9); color: #FBEEDD;
+      border-radius: var(--sc-r-pill); box-shadow: var(--sc-e3);
+    }
+    .dock__now { display: flex; align-items: baseline; gap: 0.6rem; min-width: 0; }
+    .dock__now b { font: 700 1.25rem/1 var(--sc-font-display); font-variant-numeric: tabular-nums; }
+    .dock__now span { font-size: var(--sc-t-sm); color: #CDB8A3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dock .btn { --sc-accent: #6FD8A6; --sc-accent-ink: #0B1E15; min-height: 2.75rem; }
+    .hero__second { right: var(--sc-gutter); }
+  }
+  @media (max-width: 860px) {
+    .mast span { display: none; }
+    .hero__stage { --focus: 88% 50%; }
+    /* phone art direction: the scene owns the top 60%, the type sits on the floor below it */
+    .hero__scene { bottom: auto; height: 60svh; }
+    .hero__scrim { background: linear-gradient(0deg, #2a1209 0%, rgb(42 18 9 / 0.7) 16%, rgb(42 18 9 / 0) 40%); z-index: 1; }
+    .pl--subject, .pl--frond, .pl--dusk { z-index: 2; }
+    .hero__scene::after { content: ""; position: absolute; left: 0; right: 0; top: 76%; height: 100svh; background: linear-gradient(180deg, rgb(42 18 9 / 0) 0, #2a1209 14svh); z-index: 3; pointer-events: none; }
+    .hero__h1 { top: calc(60svh - 4.2rem); font-size: clamp(2.9rem, 13vw, 4.2rem); max-width: 9ch; z-index: 4; }
+    .pl--subject { transform-origin: 76% 100%; }
+    .hero__copy { bottom: calc(5.4rem + env(safe-area-inset-bottom)); right: var(--sc-gutter); }
+    .hero__copy p { font-size: var(--sc-t-base); }
+    .hero__copy .btn { display: none; }
+    .hero__second { top: 16%; bottom: auto; font-size: var(--sc-t-xl); }
+    .pl--frond { width: 120%; left: -40%; bottom: -10%; }
+    .house { padding-block: var(--sc-8); }
+    .house__grid { grid-template-columns: repeat(6, 1fr); gap: var(--sc-5) var(--sc-4); }
+    .house__face { grid-column: 1 / span 4; grid-row: 2; }
+    .house__text { grid-column: 1 / -1; grid-row: 1; padding-top: 0; }
+    .house__mural { grid-column: 3 / span 4; grid-row: 3; margin-top: calc(var(--sc-9) * -1); }
+    .house__lamp { grid-column: 1 / span 3; grid-row: 4; }
+    .house__pillow { grid-column: 4 / span 3; grid-row: 4; margin-top: var(--sc-8); }
+    .house__front { grid-column: 1 / -1; grid-row: 5; }
+    .table__lead h2 { font-size: var(--sc-t-3xl); }
+    .dish { width: 72vw; }
+    .dish:nth-of-type(even) { margin-bottom: var(--sc-7); }
+    .sign__hush { top: 30%; right: var(--sc-gutter); }
+    .neon { width: 92vw; margin-top: -18vh; }
+    .sign__copy { bottom: calc(6rem + env(safe-area-inset-bottom)); right: var(--sc-gutter); }
+    .cuts { grid-template-columns: 1fr 1fr; }
+    .cut--a { grid-column: 1 / -1; grid-row: auto; }
+    .cut--a img { aspect-ratio: 4 / 3; }
+    .cut--d { grid-column: 1 / -1; }
+    .cut--d img { aspect-ratio: 16 / 9; }
+    .close { padding-bottom: calc(6rem + env(safe-area-inset-bottom)); }
+    .close__inner { grid-template-columns: 1fr; gap: var(--sc-7); }
+    .close__glow { right: -10%; top: 4%; width: 90vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__stage { --hp: 0 !important; --mx: 0 !important; --my: 0 !important; }
+    .hero { height: 100vh !important; height: 100svh !important; }
+    .tube.is-on { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mast" href="#s1800" aria-label="Alizé, retour en haut">
+  <img src="assets/logo.webp" width="160" height="160" alt="">
+  <span>Alizé</span>
+</a>
+
+<nav class="rail" aria-label="Le déroulé de la soirée">
+  <div class="rail__clock" aria-hidden="true">
+    <span class="rail__now" data-clock>18:00</span>
+    <span class="rail__tz">Dakhla</span>
+  </div>
+  <ol>
+    <li><a href="#s1800" data-slot="s1800"><time>18:00</time>Le soleil</a></li>
+    <li><a href="#s1900" data-slot="s1900"><time>19:00</time>La maison</a></li>
+    <li><a href="#s2030" data-slot="s2030"><time>20:30</time>À table</a></li>
+    <li><a href="#s2200" data-slot="s2200"><time>22:00</time>Sky Bar</a></li>
+    <li><a href="#s2330" data-slot="s2330"><time>23:30</time>Live</a></li>
+    <li><a href="#s0200" data-slot="s0200"><time>02:00</time>Fermeture</a></li>
+  </ol>
+  <div class="rail__book"><a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a></div>
+</nav>
+
+<div class="dock" aria-label="Réservation">
+  <div class="dock__now" aria-hidden="true"><b data-clock>18:00</b><span data-slot-label>Le soleil</span></div>
+  <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+</div>
+
+<div class="sc-grain" aria-hidden="true"></div>
+
+<main>
+
+  <!-- 18:00 · Ease. Pinned, five planes. -->
+  <section id="s1800" class="hero" data-sc-act="pin" data-sc-span="1.9" data-hour="18:00" data-label="Le soleil">
+    <div data-sc-stage class="hero__stage">
+      <div class="hero__scene">
+        <img class="pl pl--plate" src="assets/hero-plate.webp" width="2400" height="1357" alt="La terrasse de Alizé en fin d'après-midi : fauteuils en rotin, tapis rayé, mur ocre et le lagon dans l'ouverture.">
+        <div class="pl pl--sun" aria-hidden="true"></div>
+        <div class="hero__scrim" aria-hidden="true"></div>
+        <h1 class="hero__h1">Ici, le temps ralentit.</h1>
+        <img class="pl pl--subject" src="assets/hero-subject.webp" width="2400" height="1357" alt="">
+        <img class="pl pl--frond" src="assets/hero-frond.webp" width="1600" height="905" alt="">
+        <div class="pl pl--dusk" aria-hidden="true"></div>
+      </div>
+      <div class="hero__copy">
+        <p>Restaurant, rooftop et night bar à Dakhla. Ce soir, le soleil se couche <strong data-sunset>vers 19 h</strong> sur le lagon.</p>
+        <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+      </div>
+      <p class="hero__second" aria-hidden="true">Sunset, night, good energy.</p>
+    </div>
+  </section>
+
+  <!-- 19:00 · Curiosity. Flow, layered photographs at different rates. -->
+  <section id="s1900" class="house g-terra" data-sc-act="flow" data-hour="19:00" data-label="La maison">
+    <div class="sc-wrap house__grid">
+      <figure class="ph ph--tall house__face" data-sc-parallax="-0.8">
+        <img src="assets/p26.webp" width="1253" height="857" loading="lazy" alt="Un visage sculpté en bois, coiffure afro ajourée, éclairé derrière le bar entre les bouteilles.">
+        <figcaption>Derrière le bar, le visage qui veille sur la soirée.</figcaption>
+      </figure>
+      <div class="house__text sc-stack" data-sc-in data-sc-stagger="70">
+        <h2 class="sc-display">Plus qu'une terrasse.</h2>
+        <p class="sc-body">Une maison ocre en plein centre de Dakhla. Des textiles sahraouis rayés, du zellige vert, du rotin, des lanternes. Et des visages partout : sur le logo, sur les murs, taillé dans le bois derrière le bar.</p>
+      </div>
+      <figure class="ph house__mural" data-sc-parallax="0.5">
+        <img src="assets/p25.webp" width="1253" height="857" loading="lazy" alt="Un visage de femme dessiné au trait cuivré sur un mur clair, une branche d'arbre au premier plan.">
+        <figcaption>Le même visage, tracé au mur.</figcaption>
+      </figure>
+      <figure class="ph house__lamp" data-sc-parallax="1.1">
+        <img src="assets/p38.webp" width="1253" height="857" loading="lazy" alt="Une suspension en métal ajouré devant un mur brun, une colonne de zellige vert sur le côté.">
+      </figure>
+      <figure class="ph house__pillow" data-sc-parallax="-0.4">
+        <img src="assets/p23.webp" width="1253" height="857" loading="lazy" alt="Un coussin blanc à pompons brodé du mot Habibi en laine orange et rouge.">
+        <figcaption>Habibi, au salon.</figcaption>
+      </figure>
+      <figure class="ph house__front" data-sc-parallax="0.7">
+        <img src="assets/p28.webp" width="1253" height="857" loading="lazy" alt="La façade ocre de Alizé, palmier et rooftop vitré avec ses chauffages à flamme.">
+        <figcaption>9 avenue Al Walaa. Le rooftop, tout en haut.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 20:30 · Appetite. Pan: plates arrive sideways on a bone table. -->
+  <section id="s2030" class="g-bone" data-sc-act="pan" data-sc-span="3" data-hour="20:30" data-label="À table">
+    <div data-sc-stage class="table__stage">
+      <div class="table__rail" data-sc-pan="0.04">
+        <div class="table__lead">
+          <h2 class="sc-display">À table.</h2>
+          <p class="sc-body">Une cuisine internationale faite pour être partagée : planches, grillades, entrées chaudes. Et des cocktails signatures pour suivre.</p>
+        </div>
+        <figure class="dish" style="--i:0">
+          <img src="assets/p31.webp" width="1253" height="857" loading="lazy" alt="Une pièce de viande grillée, riz, haricots verts et carottes rôties, sauce tomate, dans une assiette en grès.">
+          <h3>Grillades</h3>
+          <p>Viande grillée, riz, légumes rôtis.</p>
+        </figure>
+        <figure class="dish" style="--i:1">
+          <img src="assets/p36.webp" width="1253" height="857" loading="lazy" alt="Deux plats ovales de briouates et rouleaux croustillants, avec leurs sauces et du romarin.">
+          <h3>Entrées chaudes</h3>
+          <p>Briouates et rouleaux croustillants, avec leurs sauces.</p>
+        </figure>
+        <figure class="dish" style="--i:2">
+          <img src="assets/p30.webp" width="1253" height="857" loading="lazy" alt="Vue du dessus d'une assiette blanche garnie, posée sur une table carrelée vert et blanc striée d'ombres.">
+          <h3>Assiettes fraîches</h3>
+          <p>Servies sur le zellige, à l'ombre des stores.</p>
+        </figure>
+        <figure class="dish" style="--i:3">
+          <img src="assets/p15.webp" width="1253" height="857" loading="lazy" alt="Des mains servent une assiette de viande et légumes sur un plateau en bois, une bière à côté.">
+          <h3>À partager</h3>
+          <p>Posées au centre, chacun se sert.</p>
+        </figure>
+        <figure class="dish" style="--i:4">
+          <img src="assets/p37.webp" width="1253" height="857" loading="lazy" alt="Trois cocktails en verre à pied, blanc, violet et orange, garnis d'agrumes et de pailles colorées.">
+          <h3>Cocktails signatures</h3>
+          <p>Frais, colorés, servis jusqu'à la fermeture.</p>
+        </figure>
+        <div class="table__note">
+          <p>La carte complète se découvre sur place. Une allergie, une question ? <a href="https://wa.me/34647591229" rel="noopener" target="_blank">Écrivez-nous</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21:30 hush → 22:00 · Wonder. The peak: the sign switches on. -->
+  <section id="s2200" class="g-night" data-sc-act="pin" data-sc-span="3.6" data-hour="21:30" data-label="Sky Bar">
+    <div data-sc-stage class="sign__stage" data-sign>
+      <img class="sign__room" src="assets/p34.webp" width="1253" height="857" loading="lazy" alt="">
+      <div class="sign__wash" aria-hidden="true"></div>
+      <p class="sign__hush" data-sc-cue="0 0.2 0">21:30. Le soleil est couché.</p>
+      <svg class="neon" viewBox="0 0 800 640" role="img" aria-label="L'enseigne néon Alizé Sky Bar, une coupe à cocktail entre les deux mots.">
+        <defs>
+          <path id="arcTop" d="M96 360 A320 320 0 0 1 704 360" />
+          <path id="arcBot" d="M175 352 A228 228 0 0 0 625 352" />
+        </defs>
+        <circle class="ring" cx="400" cy="330" r="290" />
+        <text class="tube" data-tube="0" font-size="104" letter-spacing="3"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">Alizé</textPath></text>
+        <path class="tube" data-tube="1" d="M300 262 Q400 272 500 262 M300 262 C306 338 372 362 400 362 C428 362 494 338 500 262 M400 362 L400 448 M344 462 Q400 444 456 462" />
+        <path class="tube" data-tube="2" d="M316 288 C358 306 442 306 484 288" />
+        <path class="tube is-red" data-tube="3" d="M462 244 a14 14 0 1 0 0.1 0 M470 232 L494 196" />
+        <text class="tube caps" data-tube="4" font-size="58"><textPath href="#arcBot" startOffset="27%" text-anchor="middle">SKY</textPath></text>
+        <text class="tube caps" data-tube="5" font-size="58"><textPath href="#arcBot" startOffset="73%" text-anchor="middle">BAR</textPath></text>
+      </svg>
+      <div class="sign__copy" data-sc-cue="0.62">
+        <h2 class="sc-display">Le Sky Bar s'allume.</h2>
+        <p class="sc-body">Cocktails signatures et vue sur la nuit de Dakhla, jusqu'à 2 h.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23:30 · Pulse. Hard cuts, every frame wipes in from a different side. -->
+  <section id="s2330" class="live g-red" data-sc-act="flow" data-hour="23:30" data-label="Live">
+    <div class="sc-wrap">
+      <div class="live__head">
+        <h2 class="sc-display" data-sc-in>Let the music play.</h2>
+        <p class="sc-body" data-sc-in>Live music, sessions acoustiques et DJ sets sous l'enseigne néon. Le programme de la semaine est publié sur <a href="#" rel="noopener" target="_blank">Instagram</a>.</p>
+      </div>
+      <div class="cuts">
+        <figure class="cut--a" data-sc-reveal="up" data-sc-reveal-at="0.18 0.36">
+          <img src="assets/p11.webp" width="1253" height="857" loading="lazy" alt="Un chanteur en casquette, bouche grande ouverte, sous un néon Let the Music Play.">
+        </figure>
+        <figure class="cut--b" data-sc-reveal="left" data-sc-reveal-at="0.24 0.4">
+          <img src="assets/p09.webp" width="1253" height="857" loading="lazy" alt="Les baguettes d'un batteur sur une batterie baignée de lumière rouge.">
+        </figure>
+        <figure class="cut--c" data-sc-reveal="down" data-sc-reveal-at="0.3 0.46">
+          <img src="assets/p19.webp" width="1253" height="857" loading="lazy" alt="Un DJ aux platines vu à travers un miroir encadré de bois, sur un mur ocre.">
+        </figure>
+        <figure class="cut--d" data-sc-reveal="right" data-sc-reveal-at="0.36 0.54">
+          <img src="assets/p10.webp" width="1253" height="857" loading="lazy" alt="Le groupe sur scène devant les textiles rayés et le néon Let the Music Play.">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02:00 · Belonging. The lights are low; the sign stays on. -->
+  <section id="s0200" class="close g-night" data-hour="02:00" data-label="Fermeture">
+    <svg class="close__glow" viewBox="0 0 800 260" aria-hidden="true">
+      <defs><path id="arcClose" d="M120 240 A300 300 0 0 1 680 240" /></defs>
+      <text class="tube is-on" font-size="112" style="font-family:Neonderthaw,cursive"><textPath href="#arcClose" startOffset="50%" text-anchor="middle">Alizé</textPath></text>
+    </svg>
+    <div class="sc-wrap">
+      <div class="close__inner">
+        <div data-sc-in>
+          <p class="close__status" data-open="0"><i aria-hidden="true"></i><span data-status>Tous les soirs, de 18:00 à 02:00</span></p>
+          <h2 class="sc-display">À ce soir.</h2>
+          <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+        </div>
+        <dl class="facts" data-sc-in data-sc-stagger="60">
+          <div><dt>Adresse</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=Dakhla+Maroc" rel="noopener" target="_blank">9 avenue Al Walaa<br>Dakhla 73000, Maroc</a></dd></div>
+          <div><dt>Horaires</dt><dd>Tous les soirs<br>18:00 à 02:00</dd></div>
+          <div><dt>Instagram</dt><dd><a href="#" rel="noopener" target="_blank">@alize.dakhla</a></dd></div>
+        </dl>
+      </div>
+      <footer class="foot">
+        <span>Alizé · Restaurant &amp; Rooftop · Dakhla</span>
+        <span>Photographies : Alizé</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script>
+(function () {
+  var TZ = 'Africa/El_Aaiun';            // Dakhla's time zone
+  var LAT = 23.7136, LON = -15.9355;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---- tonight's real sunset over Dakhla (NOAA sunrise/sunset algorithm) */
+  function dakhlaParts(d) {
+    var o = {};
+    new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(d).forEach(function (p) { o[p.type] = +p.value; });
+    return o;
+  }
+  function sunsetUTC(y, m, d) {
+    var rad = Math.PI / 180;
+    var N = Math.floor((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 0)) / 864e5);
+    var lngHour = LON / 15, t = N + ((18 - lngHour) / 24);
+    var M = 0.9856 * t - 3.289;
+    var L = (M + 1.916 * Math.sin(M * rad) + 0.020 * Math.sin(2 * M * rad) + 282.634 + 360) % 360;
+    var RA = (Math.atan(0.91764 * Math.tan(L * rad)) / rad + 360) % 360;
+    RA = (RA + (Math.floor(L / 90) * 90 - Math.floor(RA / 90) * 90)) / 15;
+    var sinDec = 0.39782 * Math.sin(L * rad), cosDec = Math.cos(Math.asin(sinDec));
+    var cosH = (Math.cos(90.833 * rad) - sinDec * Math.sin(LAT * rad)) / (cosDec * Math.cos(LAT * rad));
+    if (cosH < -1 || cosH > 1) return null;
+    var H = Math.acos(cosH) / rad / 15;
+    var T = H + RA - 0.06571 * t - 6.622;
+    var UT = ((T - lngHour) % 24 + 24) % 24;
+    return new Date(Date.UTC(y, m - 1, d) + UT * 36e5);
+  }
+  try {
+    var now = new Date(), p = dakhlaParts(now);
+    var ss = sunsetUTC(p.year, p.month, p.day);
+    if (ss) {
+      var hm = new Intl.DateTimeFormat('fr-FR', { timeZone: TZ, hour: '2-digit', minute: '2-digit' }).format(ss).replace(/\s?h\s?/, ':');
+      var el = document.querySelector('[data-sunset]');
+      var past = now > ss;
+      if (el) el.textContent = 'à ' + hm;
+      if (past && el) el.parentNode.firstChild.textContent = 'Restaurant, rooftop et night bar à Dakhla. Ce soir, le soleil s’est couché ';
+    }
+    var h = p.hour, open = (h >= 18 || h < 2);
+    var st = document.querySelector('.close__status');
+    if (st) {
+      st.setAttribute('data-open', open ? '1' : '0');
+      st.querySelector('[data-status]').textContent = open ? 'Ouvert en ce moment, jusqu’à 02:00' : 'Ouvre ce soir à 18:00';
+    }
+  } catch (e) {}
+
+  /* ---- the running order: a clock that walks 18:00 → 02:00 with you --- */
+  var slots = Array.prototype.slice.call(document.querySelectorAll('main > section[data-hour]'));
+  var mins = slots.map(function (s) { var t = s.getAttribute('data-hour').split(':'); var v = +t[0] * 60 + +t[1]; return v < 12 * 60 ? v + 1440 : v; });
+  var clocks = document.querySelectorAll('[data-clock]');
+  var label = document.querySelector('[data-slot-label]');
+  var links = document.querySelectorAll('.rail a[data-slot]');
+  var lastKey = '';
+  function fmt(v) { v = Math.round(v / 5) * 5 % 1440; var hh = Math.floor(v / 60), mm = v % 60; return (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm; }
+  function tick() {
+    var y = scrollY + innerHeight * 0.5, i = 0;
+    var tops = slots.map(function (s) { return s.getBoundingClientRect().top + scrollY; });
+    for (var k = 0; k < slots.length; k++) if (y >= tops[k]) i = k;
+    var next = i + 1 < slots.length ? i + 1 : i;
+    var span = (tops[next] - tops[i]) || 1;
+    var f = next === i ? 0 : Math.min(1, Math.max(0, (y - tops[i]) / span));
+    // the last hop (23:30 → 02:00) only resolves once the close is reached
+    var t = mins[i] + (mins[next] - mins[i]) * f;
+    if (scrollY + innerHeight >= document.documentElement.scrollHeight - 4) t = mins[mins.length - 1];
+    var str = fmt(t);
+    var key = str + '|' + i;
+    if (key === lastKey) return;
+    lastKey = key;
+    for (var c = 0; c < clocks.length; c++) clocks[c].textContent = str;
+    if (label) label.textContent = slots[i].getAttribute('data-label');
+    for (var l = 0; l < links.length; l++) links[l].setAttribute('aria-current', links[l].getAttribute('data-slot') === slots[i].id ? 'true' : 'false');
+  }
+  addEventListener('scroll', function () { requestAnimationFrame(tick); }, { passive: true });
+  addEventListener('resize', tick);
+  tick();
+
+  /* ---- hero: the scene leans with the pointer (fine pointers only) ---- */
+  var hero = document.querySelector('.hero__stage');
+  if (hero && fine && !reduce) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, running = false;
+    function loop() {
+      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+      hero.style.setProperty('--mx', cx.toFixed(4));
+      hero.style.setProperty('--my', cy.toFixed(4));
+      if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) requestAnimationFrame(loop); else running = false;
+    }
+    hero.addEventListener('pointermove', function (e) {
+      tx = (e.clientX / innerWidth - 0.5) * 2; ty = (e.clientY / innerHeight - 0.5) * 2;
+      if (!running) { running = true; requestAnimationFrame(loop); }
+    });
+    hero.addEventListener('pointerleave', function () { tx = 0; ty = 0; if (!running) { running = true; requestAnimationFrame(loop); } });
+  }
+
+  /* ---- the signature: the sign stutters on tube by tube -------------- */
+  var stage = document.querySelector('[data-sign]');
+  if (!stage) return;
+  var act = stage.closest('[data-sc-act]');
+  var tubes = Array.prototype.slice.call(stage.querySelectorAll('[data-tube]')).sort(function (a, b) { return a.getAttribute('data-tube') - b.getAttribute('data-tube'); });
+  // where along the pin each tube catches (after the hush, before the copy)
+  var at = [0.24, 0.31, 0.37, 0.42, 0.48, 0.53];
+  var state = tubes.map(function () { return { on: false, timer: 0 }; });
+  // a real striking pattern: on/off durations in ms, ending lit
+  var patterns = [
+    [50, 90, 30, 260, 40, 70, 30],
+    [70, 140, 40, 60],
+    [30, 60, 30, 180, 90],
+    [110],
+    [40, 220, 30, 90, 30, 40, 20],
+    [60, 50, 40, 310, 30]
+  ];
+  function setLitCount() {
+    var n = state.filter(function (s) { return s.on; }).length;
+    stage.setAttribute('data-lit', n);
+    stage.style.setProperty('--lit', n);
+  }
+  function strike(i) {
+    var el = tubes[i], seq = patterns[i % patterns.length].slice(), lit = false;
+    clearTimeout(state[i].timer);
+    if (reduce) { el.classList.add('is-on'); return; }
+    (function step() {
+      if (!state[i].on) { el.classList.remove('is-on'); return; }
+      if (!seq.length) { el.classList.add('is-on'); return; }
+      lit = !lit; el.classList.toggle('is-on', lit);
+      state[i].timer = setTimeout(step, seq.shift());
+    })();
+  }
+  function update() {
+    var p = parseFloat(act.style.getPropertyValue('--sc-p')) || 0;
+    for (var i = 0; i < tubes.length; i++) {
+      var want = p >= at[i];
+      if (want === state[i].on) continue;
+      state[i].on = want;
+      if (want) strike(i); else { clearTimeout(state[i].timer); tubes[i].classList.remove('is-on'); }
+    }
+    setLitCount();
+  }
+  addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
+  update();
+
+  // once fully lit, the "a" of Dakhla hums now and then, as old tubes do
+  if (!reduce) {
+    var vis = false;
+    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(stage);
+    setInterval(function () {
+      if (!vis || !state[0].on || Math.random() > 0.5) return;
+      var t = tubes[0];
+      t.classList.remove('is-on');
+      setTimeout(function () { if (state[0].on) t.classList.add('is-on'); }, 70);
+      setTimeout(function () { if (state[0].on) { t.classList.remove('is-on'); setTimeout(function () { if (state[0].on) t.classList.add('is-on'); }, 40); } }, 160);
+    }, 5200);
+  }
+})();
+</script>
+</body>
+</html>
