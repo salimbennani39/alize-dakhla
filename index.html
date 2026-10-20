@@ -394,12 +394,12 @@
     <li><a href="#s2330" data-slot="s2330"><time>23:30</time>Live</a></li>
     <li><a href="#s0200" data-slot="s0200"><time>02:00</time>Fermeture</a></li>
   </ol>
-  <div class="rail__book"><a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a></div>
+  <div class="rail__book"><a class="btn" href="https://salimbennani39.github.io/showcase/404.html" rel="noopener" target="_blank">Réserver une table</a></div>
 </nav>
 
 <div class="dock" aria-label="Réservation">
   <div class="dock__now" aria-hidden="true"><b data-clock>18:00</b><span data-slot-label>Le soleil</span></div>
-  <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+  <a class="btn" href="https://salimbennani39.github.io/showcase/404.html" rel="noopener" target="_blank">Réserver une table</a>
 </div>
 
 <div class="sc-grain" aria-hidden="true"></div>
@@ -420,7 +420,7 @@
       </div>
       <div class="hero__copy">
         <p>Restaurant, rooftop et night bar à Dakhla. Ce soir, le soleil se couche <strong data-sunset>vers 19 h</strong> sur le lagon.</p>
-        <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+        <a class="btn" href="https://salimbennani39.github.io/showcase/404.html" rel="noopener" target="_blank">Réserver une table</a>
       </div>
       <p class="hero__second" aria-hidden="true">Sunset, night, good energy.</p>
     </div>
@@ -489,7 +489,7 @@
           <p>Frais, colorés, servis jusqu'à la fermeture.</p>
         </figure>
         <div class="table__note">
-          <p>La carte complète se découvre sur place. Une allergie, une question ? <a href="https://wa.me/34647591229" rel="noopener" target="_blank">Écrivez-nous</a>.</p>
+          <p>La carte complète se découvre sur place. Une allergie, une question ? <a href="https://salimbennani39.github.io/showcase/404.html" rel="noopener" target="_blank">Écrivez-nous</a>.</p>
         </div>
       </div>
     </div>
@@ -556,7 +556,7 @@
         <div data-sc-in>
           <p class="close__status" data-open="0"><i aria-hidden="true"></i><span data-status>Tous les soirs, de 18:00 à 02:00</span></p>
           <h2 class="sc-display">À ce soir.</h2>
-          <a class="btn" href="https://wa.me/34647591229" rel="noopener" target="_blank">Réserver une table</a>
+          <a class="btn" href="https://salimbennani39.github.io/showcase/404.html" rel="noopener" target="_blank">Réserver une table</a>
         </div>
         <dl class="facts" data-sc-in data-sc-stagger="60">
           <div><dt>Adresse</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=Dakhla+Maroc" rel="noopener" target="_blank">9 avenue Al Walaa<br>Dakhla 73000, Maroc</a></dd></div>
@@ -730,10 +730,12 @@
   }
 })();
 </script>
-<script>/* showcase: links that lead nowhere open the Showcase 404 */
+<script>/* showcase: links that lead nowhere, and booking / WhatsApp / call links, open the Showcase 404 */
 (()=>{const U='https://salimbennani39.github.io/showcase/404.html';
-const dead=a=>{const h=(a.getAttribute('href')||'').trim();return h===''||h==='#'||h==='#!'||/^javascript:/i.test(h)};
-addEventListener('click',e=>{if(e.defaultPrevented)return;const a=e.target.closest&&e.target.closest('a');
-if(a&&dead(a)){e.preventDefault();location.href=U;}});})();</script>
+const dead=a=>{const h=(a.getAttribute('href')||'').trim();return h===''||h==='#'||h==='#!'||/^javascript:/i.test(h)||/^(tel:|sms:|mailto:|https?:\/\/(api\.|web\.)?(wa\.me|whatsapp\.com))/i.test(h)};
+addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a');if(!a)return;
+const h=(a.getAttribute('href')||'').trim();const contact=/^(tel:|sms:|mailto:|https?:)/i.test(h);
+if(dead(a)&&(contact||!e.defaultPrevented)){e.preventDefault();e.stopImmediatePropagation();location.href=U;}},true);
+const o=window.open;window.open=function(u){if(/(wa\.me|whatsapp\.com|^tel:)/i.test(String(u||'')))return location.href=U,null;return o.apply(this,arguments)};})();</script>
 </body>
 </html>
